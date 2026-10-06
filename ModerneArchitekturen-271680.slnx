@@ -5,5 +5,6 @@
   <Folder Name="/M003_DesignPatterns/">
     <File Path="README.md" />
     <Project Path="HelloPizza/HelloPizza.csproj" />
+    <Project Path="LabDesignPatterns/LabDesignPatterns.csproj" />
   </Folder>
 </Solution>
