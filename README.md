@@ -3,30 +3,30 @@ Kurs Repository zu Kurs .NET - Moderne Architekturen und Designprinzipien der pp
 
 ## M001 | Was Architektur ist
 
-- [ ] Ebenenmodell
-- [ ] Rollen im Team
-- [ ] Aspekte, Richtlinien, Analyse
-- [ ] 3P-Regel: Product, Process, People
-- [ ] Funktional vs. Nicht-Funktional
-- [ ] Kosten und Technical Schulden
+- [x] Ebenenmodell
+- [x] Rollen im Team
+- [x] Aspekte, Richtlinien, Analyse
+- [x] 3P-Regel: Product, Process, People
+- [x] Funktional vs. Nicht-Funktional
+- [x] Kosten und Technical Schulden
 
 ## M002 | Architekturüberblick
 
-- [ ] Cargo Cult Programming
-- [ ] Überblick verschiedener Architekturen
+- [x] Cargo Cult Programming
+- [x] Überblick verschiedener Architekturen
 - [ ] Beispiel Clean-Architecture
 - [ ] Todo List Project
 
 ## M003 | Design Patterns
 
-- [ ] Relevanz und Entwicklung der Muster
-- [ ] Creational Patterns: Wie werden Objekte erzeugt?
+- [x] Relevanz und Entwicklung der Muster
+- [x] Creational Patterns: Wie werden Objekte erzeugt?
   - FactoryMethod als PizzaShop
   - BuilderPattern als PizzaConfigurator
-- [ ] Structural Patterns: Wie werden Objekte verbunden und integriert?
+- [x] Structural Patterns: Wie werden Objekte verbunden und integriert?
   - Decorator: Pizza schneiden und verpacken
   - Adapter: Pfannen-Pizza als "normale" Pizza bestellen
-- [ ] Behavioral Patterns: Wie verhalten sich Objekte und Objektstrukturen?
+- [x] Behavioral Patterns: Wie verhalten sich Objekte und Objektstrukturen?
   - Strategy: Pizza mit einem Fahrzeug ausliefern
 
 ## M004 | Design Principles

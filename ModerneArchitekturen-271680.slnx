@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Intro/">
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/M003_DesignPatterns/">
+    <File Path="README.md" />
+    <Project Path="HelloPizza/HelloPizza.csproj" />
+  </Folder>
+</Solution>
