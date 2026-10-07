@@ -31,10 +31,10 @@ Kurs Repository zu Kurs .NET - Moderne Architekturen und Designprinzipien der pp
 
 ## M004 | Design Principles
 
-- [ ] Prinzipien und Code-Smells
-- [ ] SOLID Bewertung
-- [ ] Säulen der OOP, Kohäsion und Kopplung
-- [ ] Beispiele zu ISP und DIP
+- [x] Prinzipien und Code-Smells
+- [x] SOLID Bewertung
+- [x] Säulen der OOP, Kohäsion und Kopplung
+- [x] Beispiele zu ISP und DIP
 
 ## M005 | Event Sourcing
 

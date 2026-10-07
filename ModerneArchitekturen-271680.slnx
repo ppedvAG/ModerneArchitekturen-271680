@@ -7,4 +7,7 @@
     <Project Path="HelloPizza/HelloPizza.csproj" />
     <Project Path="LabDesignPatterns/LabDesignPatterns.csproj" />
   </Folder>
+  <Folder Name="/M004_Solid/">
+    <Project Path="HelloSolid/HelloSolid.csproj" Id="81e10277-9c7b-4adc-8c36-1eb5d6870034" />
+  </Folder>
 </Solution>
