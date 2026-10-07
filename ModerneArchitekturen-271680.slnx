@@ -14,4 +14,7 @@
     <Project Path="Academy/Academy.csproj" Id="16fb8592-8728-46f3-b93c-e0810be13734" />
     <Project Path="LabEventSourcing/LabEventSourcing.csproj" />
   </Folder>
+  <Folder Name="/M006_CQRS/">
+    <Project Path="Order.WebApi/Order.WebApi.csproj" Id="1c8f4af9-fbd2-4982-92d3-528711ee63d6" />
+  </Folder>
 </Solution>
