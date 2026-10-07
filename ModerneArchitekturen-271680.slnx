@@ -12,5 +12,6 @@
   </Folder>
   <Folder Name="/M005_EventSourcing/">
     <Project Path="Academy/Academy.csproj" Id="16fb8592-8728-46f3-b93c-e0810be13734" />
+    <Project Path="LabEventSourcing/LabEventSourcing.csproj" />
   </Folder>
 </Solution>
