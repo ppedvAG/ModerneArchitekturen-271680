@@ -10,4 +10,7 @@
   <Folder Name="/M004_Solid/">
     <Project Path="HelloSolid/HelloSolid.csproj" Id="81e10277-9c7b-4adc-8c36-1eb5d6870034" />
   </Folder>
+  <Folder Name="/M005_EventSourcing/">
+    <Project Path="Academy/Academy.csproj" Id="16fb8592-8728-46f3-b93c-e0810be13734" />
+  </Folder>
 </Solution>

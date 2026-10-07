@@ -38,9 +38,9 @@ Kurs Repository zu Kurs .NET - Moderne Architekturen und Designprinzipien der pp
 
 ## M005 | Event Sourcing
 
-- [ ] Domain Driven Design
-- [ ] Datenpersistenz
-- [ ] Beispiel Student Course
+- [x] Domain Driven Design
+- [x] Datenpersistenz
+- [x] Beispiel Student Course
 
 ## M006 | WebAPI mit CQRS
 
