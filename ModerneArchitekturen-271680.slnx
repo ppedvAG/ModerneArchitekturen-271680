@@ -15,6 +15,7 @@
     <Project Path="LabEventSourcing/LabEventSourcing.csproj" />
   </Folder>
   <Folder Name="/M006_CQRS/">
+    <Project Path="LabBankAccount.WebApi/LabBankAccount.WebApi.csproj" />
     <Project Path="Order.WebApi/Order.WebApi.csproj" Id="1c8f4af9-fbd2-4982-92d3-528711ee63d6" />
   </Folder>
 </Solution>

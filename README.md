@@ -44,10 +44,10 @@ Kurs Repository zu Kurs .NET - Moderne Architekturen und Designprinzipien der pp
 
 ## M006 | WebAPI mit CQRS
 
-- [ ] Repository Pattern
-- [ ] Mediator Pattern
-- [ ] Service API
-- [ ] Beispiel Auftragsverwaltung
+- [x] Repository Pattern
+- [x] Mediator Pattern
+- [x] Service API
+- [x] Beispiel Auftragsverwaltung
 
 ## M007 | Business Anwendung
 
