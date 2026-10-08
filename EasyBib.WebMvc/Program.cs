@@ -1,4 +1,7 @@
 using EasyBib.Infrastructure;
+using EasyBib.Infrastructure.Persistance;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EasyBib.WebMvc
 {
@@ -11,6 +14,19 @@ namespace EasyBib.WebMvc
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("Default") ?? throw new InvalidOperationException("Connection string 'Default' not found.");
             builder.Services.AddRepositories(connectionString);
+
+            builder.Services.AddIdentity<IdentityUser<Guid>, IdentityRole<Guid>>(options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<EasyBibDbContext>()
+                .AddDefaultTokenProviders();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -27,6 +43,7 @@ namespace EasyBib.WebMvc
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapStaticAssets();
             app.MapControllerRoute(

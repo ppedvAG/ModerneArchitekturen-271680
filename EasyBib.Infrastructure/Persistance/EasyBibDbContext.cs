@@ -1,11 +1,13 @@
 ﻿using EasyBib.Domain;
 using EasyBib.Domain.Entities;
 using EasyBib.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyBib.Infrastructure.Persistance;
 
-public class EasyBibDbContext : DbContext
+public class EasyBibDbContext : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
 {
     public EasyBibDbContext(DbContextOptions<EasyBibDbContext> options)
         : base(options)
@@ -19,6 +21,8 @@ public class EasyBibDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         // Member <-> Membership (1 : 0..1)
         modelBuilder.Entity<Member>()
             .HasOne(m => m.Membership)
@@ -42,6 +46,7 @@ public class EasyBibDbContext : DbContext
             .HasIndex(m => m.EAN)
             .IsUnique();
 
+        modelBuilder.ApplySeedIdentity();
         modelBuilder.ApplySeed();
     }
 }
