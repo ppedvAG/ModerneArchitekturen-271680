@@ -7,7 +7,7 @@
     <Project Path="EasyBib.Domain/EasyBib.Domain.csproj" Id="6eab1856-da8b-4b72-a90a-4df838d85d52" />
   </Folder>
   <Folder Name="/EasyBib/Infrastructure/">
-    <Project Path="EasyBib.Infrastructure.Tests/EasyBib.Infrastructure.Tests.csproj" Id="ff524e73-946f-467f-8a22-ad318152a8e7" />
+    <Project Path="EasyBib.Infrastructure.Tests/EasyBib.Infrastructure.Tests.csproj" Id="ae0ba8e3-efd2-40ec-ae3c-e456ee7af477" />
     <Project Path="EasyBib.Infrastructure/EasyBib.Infrastructure.csproj" Id="2a4ccff1-039d-477b-aaeb-e184655b003d" />
   </Folder>
   <Folder Name="/Intro/">
