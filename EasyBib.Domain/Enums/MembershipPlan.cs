@@ -1,9 +1,8 @@
 ﻿namespace EasyBib.Domain.Enums;
 
-public enum PlanName
+public enum MembershipPlan
 {
     Basic,
-    Standard,
     Family,
     Premium
 }

@@ -19,7 +19,7 @@
 
 using EasyBib.Domain;
 using EasyBib.Domain.Enums;
-using EasyBib.Domain.Models;
+using EasyBib.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyBib.Infrastructure.Data;
@@ -124,7 +124,7 @@ public static class Seed
             {
                 Id = MembershipFryId,
                 MemberId = MemberFryId,
-                PlanName = PlanName.Basic,
+                PlanName = MembershipPlan.Basic,
                 MaxActiveLoans = 2,
                 LoanPeriodDays = 14
             },
@@ -132,7 +132,7 @@ public static class Seed
             {
                 Id = MembershipLeelaId,
                 MemberId = MemberLeelaId,
-                PlanName = PlanName.Premium,
+                PlanName = MembershipPlan.Premium,
                 MaxActiveLoans = 5,
                 LoanPeriodDays = 28
             },
@@ -140,7 +140,7 @@ public static class Seed
             {
                 Id = MembershipFarnsworthId,
                 MemberId = MemberFarnsworthId,
-                PlanName = PlanName.Basic,
+                PlanName = MembershipPlan.Basic,
                 MaxActiveLoans = 2,
                 LoanPeriodDays = 14
             },
@@ -148,7 +148,7 @@ public static class Seed
             {
                 Id = MembershipAmyId,
                 MemberId = MemberAmyId,
-                PlanName = PlanName.Family,
+                PlanName = MembershipPlan.Family,
                 MaxActiveLoans = 8,
                 LoanPeriodDays = 21
             },
@@ -156,7 +156,7 @@ public static class Seed
             {
                 Id = MembershipBugsId,
                 MemberId = MemberBugsId,
-                PlanName = PlanName.Family,
+                PlanName = MembershipPlan.Family,
                 MaxActiveLoans = 8,
                 LoanPeriodDays = 21
             },
@@ -164,7 +164,7 @@ public static class Seed
             {
                 Id = MembershipDaffyId,
                 MemberId = MemberDaffyId,
-                PlanName = PlanName.Premium,
+                PlanName = MembershipPlan.Premium,
                 MaxActiveLoans = 5,
                 LoanPeriodDays = 28
             }

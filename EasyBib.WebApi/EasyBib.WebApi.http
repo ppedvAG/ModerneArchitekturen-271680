@@ -1,6 +1,138 @@
 @EasyBib.WebApi_HostAddress = http://localhost:5050
 
-GET {{EasyBib.WebApi_HostAddress}}/weatherforecast/
+### ==========================================================
+### Seed: Member mit Basic-Abo anlegen
+### ==========================================================
+# @name createMember
+POST {{EasyBib.WebApi_HostAddress}}/api/members
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Max Mustermann",
+  "email": "max@mustermann.at",
+  "plan": 0
+}
+
+### ==========================================================
+### Seed: Medien anlegen
+### ==========================================================
+# @name createBook
+POST {{EasyBib.WebApi_HostAddress}}/api/mediaitems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Clean Architecture",
+  "ean": "9780134494166",
+  "type": 0
+}
+
+### @name createGame
+POST {{EasyBib.WebApi_HostAddress}}/api/mediaitems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Catan",
+  "ean": "9782914849046",
+  "type": 1
+}
+
+### @name createMovie
+POST {{EasyBib.WebApi_HostAddress}}/api/mediaitems
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Die Hard",
+  "ean": "5050070001234",
+  "type": 2
+}
+
+### ==========================================================
+### Alle Medien abfragen
+### ==========================================================
+GET {{EasyBib.WebApi_HostAddress}}/api/mediaitems
 Accept: application/json
 
-###
+### ==========================================================
+### Medium ausleihen (IDs aus den Seed-Requests übernehmen)
+### ==========================================================
+# Ersetze memberId/mediaItemId mit den IDs aus obigen Antworten,
+# oder nutze die REST-Client-Referenzen:
+#   memberId: {{createMember.response.body.$.id}}
+#   mediaItemId: {{createBook.response.body.$.id}}
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/checkout
+Accept: application/json
+Content-Type: application/json
+
+{
+  "memberId": "{{createMember.response.body.$.id}}",
+  "mediaItemId": "{{createBook.response.body.$.id}}"
+}
+
+### @name checkoutGame
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/checkout
+Accept: application/json
+Content-Type: application/json
+
+{
+  "memberId": "{{createMember.response.body.$.id}}",
+  "mediaItemId": "{{createGame.response.body.$.id}}"
+}
+
+### ==========================================================
+### Test: Basic-Abo-Limit (3. Ausleihe sollte 409 geben)
+### ==========================================================
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/checkout
+Accept: application/json
+Content-Type: application/json
+
+{
+  "memberId": "{{createMember.response.body.$.id}}",
+  "mediaItemId": "{{createMovie.response.body.$.id}}"
+}
+
+### ==========================================================
+### Ausleihe abfragen
+### ==========================================================
+GET {{EasyBib.WebApi_HostAddress}}/api/loans/{{checkoutGame.response.body.$.id}}
+Accept: application/json
+
+### ==========================================================
+### Ausleihe verlängern (default 7 Tage)
+### ==========================================================
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/{{checkoutGame.response.body.$.id}}/extend?days=7
+Accept: application/json
+
+### ==========================================================
+### Ausleihe zurückgeben
+### ==========================================================
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/{{checkoutGame.response.body.$.id}}/return
+Accept: application/json
+
+### ==========================================================
+### Test: Zurückgegebene Ausleihe erneut zurückgeben (sollte 409 geben)
+### ==========================================================
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/{{checkoutGame.response.body.$.id}}/return
+Accept: application/json
+
+### ==========================================================
+### Abo wechseln (Basic -> Premium)
+### ==========================================================
+PUT {{EasyBib.WebApi_HostAddress}}/api/members/{{createMember.response.body.$.id}}/plan
+Accept: application/json
+Content-Type: application/json
+
+0
+
+### Danach sollte die 3. Ausleihe (Movie) funktionieren:
+POST {{EasyBib.WebApi_HostAddress}}/api/loans/checkout
+Accept: application/json
+Content-Type: application/json
+
+{
+  "memberId": "{{createMember.response.body.$.id}}",
+  "mediaItemId": "{{createMovie.response.body.$.id}}"
+}

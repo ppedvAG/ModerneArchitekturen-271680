@@ -68,3 +68,46 @@ Wichtig: Verwende konstante v4 Guids für HasData, konsistente FK-Beziehungen, D
 
 Verwende Bezeichner aus der Popkultur, z. B. Futurama, Looney Tunes usw. damit die Demodaten interessanter werden.
 
+
+# Business Rules (Von Vibe ausgearbeitet)
+
+## Prompt 
+
+Wir sollten als nächsten Schritt Repositories für unsere Entitäten anlegen, oder? Wo können wir CRUD verwenden und bei welchen Entitäten ist deines Erachtens CRUD nicht sinnvoll? Denke daran, dass uns Clean Architecture und DDD wichtig ist. Bei Loan macht CRUD vermutlich keinen Sinn. Was sind sinnvolle Prozesse?
+
+Guter Punkt – und genau richtig erkannt: **Loan ist kein CRUD-Kandidat.** Hier meine Einschätzung:
+
+## CRUD ja, aber...
+
+**MediaItem** – klassischer CRUD-Fall. Katalogverwaltung (anlegen, Titel/EAN korrigieren, entfernen) hat keine echten Geschäftsregeln jenseits von Validierung. Ein generisches `IMediaItemRepository` mit `Add/Update/Delete/GetById/List` passt hier.
+
+**Member** – überwiegend CRUD (Stammdaten: Name, E-Mail), aber mit einem Vorbehalt: die **Zuordnung/Wechsel der Membership** ist ein Domänenprozess, kein simples Setter-Update. Also: CRUD für Stammdaten, aber `AssignMembership()` / `ChangePlan()` gehört als Methode auf die Entität.
+
+**Membership** – hier würde ich gar kein eigenes Repository anbieten. Membership ist Teil des `Member`-Aggregats (Fremdschlüssel `MemberId`, 1:0..1). Es wird über `MemberRepository` mitgeladen und -gespeichert. Ein separates Repository würde die Aggregatgrenze aufweichen.
+
+## Loan: Prozesse statt CRUD
+
+Ein Loan hat einen **Lebenszyklus** – die Statusübergänge sind die eigentliche Domänenlogik. Sinnvolle Prozesse:
+
+| Prozess | Methode | Regel |
+|---|---|---|
+| Medium ausleihen | `LoanService.CheckOut(membershipId, mediaItemId)` | Prüft `MaxActiveLoans`, setzt `DueDate` = heute + `LoanPeriodDays` |
+| Rückgabe | `loan.MarkReturned()` | `Active/Overdue → Returned` |
+| Frist prüfen | `loan.MarkAsOverdue(today)` | nur `Active → Overdue` |
+| Verlängern | `loan.Extend(days)` | nur solange `Active` |
+
+**DDD-Konsequenzen:**
+- **Kein `ILoanRepository.Update()`** – sonst kann jeder Status einfach überschrieben werden. Das Repository bietet nur `Add`, `GetById`, `GetActiveLoansFor(membershipId)` (für die `MaxActiveLoans`-Prüfung) und `Save`.
+- Statusübergänge passieren **auf der Entität** (`MarkReturned`, `Extend`) – der Status-Setter sollte später private werden, damit EF Core nicht als Hintertür für illegale Übergänge missbraucht wird.
+- `CheckOut` gehört als **Domain-Service** (`LoanService`) in die Domain, weil er zwei Aggregate (Membership und MediaItem) koordiniert – die `MaxActiveLoans`-Prüfung braucht Daten aus beiden.
+
+## Resultierendes Bild
+
+- `IMemberRepository` – CRUD + Aggregate Root (inkl. Membership)
+- `IMediaItemRepository` – CRUD
+- `ILoanRepository` – nur der kleine, absichtlich eingeschränkte Funktionsumfang
+- `LoanService` (Domain) – `CheckOut`-Prozess
+
+Für Clean Architecture liegen die Interfaces in der **Domain**, die EF-Core-Implementierungen in der **Infrastructure**.
+
+Soll ich dir die beiden Repositories plus `LoanService` und die erweiterte `Loan`-Entität (mit privatem Status-Setter und Prozessmethoden) als C#-Canvas generieren?

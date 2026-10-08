@@ -1,4 +1,4 @@
-﻿namespace EasyBib.Domain.Models;
+﻿namespace EasyBib.Domain.Entities;
 
 public class Member
 {

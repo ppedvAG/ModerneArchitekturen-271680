@@ -1,5 +1,5 @@
 ﻿using EasyBib.Domain;
-using EasyBib.Domain.Models;
+using EasyBib.Domain.Entities;
 using EasyBib.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 

@@ -51,10 +51,10 @@ Kurs Repository zu Kurs .NET - Moderne Architekturen und Designprinzipien der pp
 
 ## M007 | Business Anwendung
 
-- [ ] Eigene Geschäftsanwendung entwerfen
-- [ ] Klassendiagramm erstellen mit draw.io
-- [ ] Domänen-modell generieren lassen
-- [ ] Testdatenbank mit Entity Framework
-- [ ] Testdaten generieren lassen
-- [ ] WebAPI erstellen
+- [x] Eigene Geschäftsanwendung entwerfen
+- [x] Klassendiagramm erstellen mit Vibe
+- [x] Domänen-modell generieren lassen
+- [x] Testdatenbank mit Entity Framework
+- [x] Testdaten generieren lassen
+- [x] WebAPI erstellen
 - [ ] Weitere Front-Ends erstellen

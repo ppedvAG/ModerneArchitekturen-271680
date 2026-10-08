@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EasyBib.Domain\EasyBib.Domain.csproj" />
     <ProjectReference Include="..\EasyBib.Infrastructure\EasyBib.Infrastructure.csproj" />
   </ItemGroup>

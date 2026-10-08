@@ -1,6 +1,6 @@
 ﻿using EasyBib.Domain.Enums;
 
-namespace EasyBib.Domain.Models;
+namespace EasyBib.Domain.Entities;
 
 public class MediaItem
 {
