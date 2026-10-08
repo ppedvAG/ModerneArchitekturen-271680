@@ -1,4 +1,15 @@
 <Solution>
+  <Folder Name="/EasyBib/" />
+  <Folder Name="/EasyBib/Application/">
+    <Project Path="EasyBib.WebApi/EasyBib.WebApi.csproj" Id="b4efd873-4896-49c6-90e5-2babcea53d5c" />
+  </Folder>
+  <Folder Name="/EasyBib/Domain/">
+    <Project Path="EasyBib.Domain/EasyBib.Domain.csproj" Id="6eab1856-da8b-4b72-a90a-4df838d85d52" />
+  </Folder>
+  <Folder Name="/EasyBib/Infrastructure/">
+    <Project Path="EasyBib.Infrastructure.Tests/EasyBib.Infrastructure.Tests.csproj" Id="ff524e73-946f-467f-8a22-ad318152a8e7" />
+    <Project Path="EasyBib.Infrastructure/EasyBib.Infrastructure.csproj" Id="2a4ccff1-039d-477b-aaeb-e184655b003d" />
+  </Folder>
   <Folder Name="/Intro/">
     <File Path="README.md" />
   </Folder>
