@@ -2,6 +2,7 @@
   <Folder Name="/EasyBib/" />
   <Folder Name="/EasyBib/Application/">
     <Project Path="EasyBib.WebApi/EasyBib.WebApi.csproj" Id="b4efd873-4896-49c6-90e5-2babcea53d5c" />
+    <Project Path="EasyBib.WebMvc/EasyBib.WebMvc.csproj" Id="d4c86a3f-3bc1-40a8-90f7-87d30067da80" />
   </Folder>
   <Folder Name="/EasyBib/Domain/">
     <Project Path="EasyBib.Domain/EasyBib.Domain.csproj" Id="6eab1856-da8b-4b72-a90a-4df838d85d52" />

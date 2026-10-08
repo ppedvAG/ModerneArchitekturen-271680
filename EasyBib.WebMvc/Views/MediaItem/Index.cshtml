@@ -1,0 +1,180 @@
+﻿@model IReadOnlyList<EasyBib.WebMvc.Models.MediaItemViewModel>
+
+@{
+    ViewData["Title"] = "Medien";
+}
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Medien</h1>
+            <p class="text-muted mb-0">
+                Verwalte die Medien in deiner Bibliothek.
+            </p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-1"></i>
+            Neues Medium
+        </a>
+    </div>
+
+    @if (TempData["Success"] is string message)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i>
+            @message
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+
+            <form asp-action="Index"
+                  method="get"
+                  class="row g-2">
+
+                <div class="col-md">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white">
+                            <i class="bi bi-search"></i>
+                        </span>
+
+                        <input type="search"
+                               name="search"
+                               value="@ViewBag.Search"
+                               class="form-control"
+                               placeholder="Nach EAN suchen..."
+                               aria-label="Nach EAN suchen" />
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit"
+                            class="btn btn-outline-primary">
+                        Suchen
+                    </button>
+
+                    @if (!string.IsNullOrWhiteSpace(ViewBag.Search))
+                    {
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                            Zurücksetzen
+                        </a>
+                    }
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-header bg-white py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">
+                    Medienbestand
+                </span>
+
+                <span class="badge text-bg-light">
+                    @Model.Count Einträge
+                </span>
+            </div>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <div class="text-center py-5 px-3">
+
+                <div class="display-5 text-muted mb-3">
+                    <i class="bi bi-journal-x"></i>
+                </div>
+
+                <h5>Keine Medien gefunden</h5>
+
+                <p class="text-muted">
+                    Es wurden keine passenden Medien gefunden.
+                </p>
+
+                <a asp-action="Create"
+                   class="btn btn-primary">
+                    Erstes Medium anlegen
+                </a>
+
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>EAN</th>
+                            <th class="text-end">Aktionen</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="fw-semibold">
+                                        @item.EAN
+                                    </span>
+                                </td>
+
+                                <td class="text-end">
+
+                                    <div class="btn-group">
+
+                                        <a asp-action="Details"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-secondary"
+                                           title="Details anzeigen">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-primary"
+                                           title="Bearbeiten">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+
+                                        <form asp-action="Delete"
+                                              asp-route-id="@item.Id"
+                                              method="post"
+                                              class="d-inline"
+                                              onsubmit="return confirm('Soll dieses Medium wirklich gelöscht werden?');">
+
+                                            @Html.AntiForgeryToken()
+
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-outline-danger"
+                                                    title="Löschen">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

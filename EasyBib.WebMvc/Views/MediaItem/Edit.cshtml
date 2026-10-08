@@ -1,0 +1,81 @@
+﻿@model EasyBib.WebMvc.Models.MediaItemViewModel
+
+@{
+    ViewData["Title"] = "Medium bearbeiten";
+}
+
+<div class="container py-4">
+
+    <div class="mb-4">
+        <a asp-action="Index"
+           class="text-decoration-none text-muted">
+            <i class="bi bi-arrow-left me-1"></i>
+            Zurück zu den Medien
+        </a>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="mb-4">
+                <h1 class="fw-bold">Medium bearbeiten</h1>
+                <p class="text-muted">
+                    Ändere die Daten des ausgewählten Mediums.
+                </p>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body p-4">
+
+                    <form asp-action="Edit" method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <input asp-for="Id" type="hidden" />
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"></div>
+
+                        <div class="mb-4">
+                            <label asp-for="EAN"
+                                   class="form-label fw-semibold">
+                            </label>
+
+                            <input asp-for="EAN"
+                                   class="form-control form-control-lg" />
+
+                            <span asp-validation-for="EAN"
+                                  class="text-danger">
+                            </span>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a asp-action="Details"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-light">
+                                Abbrechen
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                <i class="bi bi-save me-1"></i>
+                                Änderungen speichern
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

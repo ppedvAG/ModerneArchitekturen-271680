@@ -1,8 +1,4 @@
-
-using EasyBib.Domain.Contracts;
-using EasyBib.Domain.Services;
 using EasyBib.Infrastructure;
-using EasyBib.Infrastructure.Persistance;
 
 namespace EasyBib.WebApi
 {
@@ -14,11 +10,7 @@ namespace EasyBib.WebApi
 
             // Add services to the container.
             string connectionString = builder.Configuration.GetConnectionString("Default")!;
-            builder.Services.AddSqlServer<EasyBibDbContext>(connectionString);
-            builder.Services.AddScoped<ILoanRepository, LoanRepository>();
-            builder.Services.AddScoped<IMemberRepository, MemberRepository>();
-            builder.Services.AddScoped<IMediaItemRepository, MediaItemRepository>();
-            builder.Services.AddScoped<LoanService>();
+            builder.Services.AddRepositories(connectionString);
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
